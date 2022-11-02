@@ -1,0 +1,103 @@
+<html lang='en'>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-20QLM76YY2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-20QLM76YY2');
+  </script>
+  <title>ReActívate</title>
+  <meta charset='utf-8' />
+  <meta name='author' content='Raúl Ruiz del Valle' />
+  <meta name='description' content='Exergame environment using augmented reality.' />
+  <meta property='og:title' content='ReActívate' />
+  <meta property='og:description' content='Exergame environment using augmented reality.' />
+  <meta property='og:type' content='website' />
+  <link rel='shortcut icon' href='favicon.ico' />
+  <link rel='apple-touch-icon' sizes='180x180' href='apple-touch-icon.png' />
+  <link rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png' />
+  <link rel='icon' type='image/png' sizes='16x16' href='favicon-16x16.png' />
+  <style>
+    body {
+      margin: 0;
+      background-color: #264653;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+    }
+
+    #input-video {
+      display: none;
+    }
+
+    .buttons-bar {
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    #usernameText {
+      width: 50ch;
+    }
+
+    #exportButton {
+      margin-left: 8rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='buttons-bar'>
+    <input type='button' value='❌' id='clearButton'>
+    <input type='text' name='username' id='usernameText' placeholder='Nombre de usuario'>
+    <input type='button' value='Exportar resultados' id='exportButton'>
+  </div>
+  <video id='input-video'></video>
+  <script src='bundle.js'></script>
+  <script>
+    const saveDataAsFile = (filename, dataObjToWrite) => {
+      const blob = new Blob([JSON.stringify(dataObjToWrite)], { type: "text/json" });
+      const link = document.createElement("a");
+
+      link.download = filename;
+      link.href = window.URL.createObjectURL(blob);
+      link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
+
+      const evt = new MouseEvent("click", {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+      });
+
+      link.dispatchEvent(evt);
+      link.remove()
+    };
+
+    const usernameTextEl = document.querySelector('#usernameText');
+
+    document.querySelector('#clearButton').addEventListener('click', (event) => {
+      if (!window.confirm('¿Eliminar TODAS las estadísticas generadas hasta ahora?')) {
+        return;
+      }
+
+      localStorage.removeItem('statsData');
+    });
+
+    document.querySelector('#exportButton').addEventListener('click', (event) => {
+      const statsData = localStorage.getItem('statsData');
+      if (!statsData) {
+        return;
+      }
+      
+      const statsDataJson = JSON.parse(statsData);
+      saveDataAsFile(`${usernameTextEl.value}.json`, statsDataJson);
+    });
+  </script>
+</body>
+
+</html>
