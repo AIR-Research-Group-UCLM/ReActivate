@@ -35,12 +35,69 @@
     #input-video {
       display: none;
     }
+
+    .buttons-bar {
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    #usernameText {
+      width: 50ch;
+    }
+
+    #exportButton {
+      margin-left: 8rem;
+    }
   </style>
 </head>
 
 <body>
+  <div class='buttons-bar'>
+    <input type='button' value='❌' id='clearButton'>
+    <input type='text' name='username' id='usernameText' placeholder='Nombre de usuario'>
+    <input type='button' value='Exportar resultados' id='exportButton'>
+  </div>
   <video id='input-video'></video>
   <script src='bundle.js'></script>
+  <script>
+    const saveDataAsFile = (filename, dataObjToWrite) => {
+      const blob = new Blob([JSON.stringify(dataObjToWrite)], { type: "text/json" });
+      const link = document.createElement("a");
+
+      link.download = filename;
+      link.href = window.URL.createObjectURL(blob);
+      link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
+
+      const evt = new MouseEvent("click", {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+      });
+
+      link.dispatchEvent(evt);
+      link.remove()
+    };
+
+    const usernameTextEl = document.querySelector('#usernameText');
+
+    document.querySelector('#clearButton').addEventListener('click', (event) => {
+      if (!window.confirm('¿Eliminar TODAS las estadísticas generadas hasta ahora?')) {
+        return;
+      }
+
+      localStorage.removeItem('statsData');
+    });
+
+    document.querySelector('#exportButton').addEventListener('click', (event) => {
+      const statsData = localStorage.getItem('statsData');
+      if (!statsData) {
+        return;
+      }
+      
+      const statsDataJson = JSON.parse(statsData);
+      saveDataAsFile(`${usernameTextEl.value}.json`, statsDataJson);
+    });
+  </script>
 </body>
 
 </html>
