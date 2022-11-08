@@ -10,6 +10,7 @@
 
     gtag('config', 'G-20QLM76YY2');
   </script>
+  <script src="/vendor/@json2csv/json2csv.js"></script>
   <title>ReActívate</title>
   <meta charset='utf-8' />
   <meta name='author' content='Raúl Ruiz del Valle' />
@@ -60,23 +61,19 @@
   <video id='input-video'></video>
   <script src='bundle.js'></script>
   <script>
-    const saveDataAsFile = (filename, dataObjToWrite) => {
-      const blob = new Blob([JSON.stringify(dataObjToWrite)], { type: "text/json" });
+    const saveDataAsFile = (filename, type, dataObjToWrite) => {
       const link = document.createElement("a");
-
       link.download = filename;
-      link.href = window.URL.createObjectURL(blob);
-      link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
-
-      const evt = new MouseEvent("click", {
-          view: window,
-          bubbles: true,
-          cancelable: true,
-      });
-
-      link.dispatchEvent(evt);
+      link.href = window.URL.createObjectURL(new Blob([dataObjToWrite], { type }));
+      link.click();
       link.remove()
     };
+
+    const convertToCSV = (arr, username) => {
+      arr.forEach((element) => (element['_username'] = username));
+
+      return json2csv.parse(arr, { withBOM: true });
+    }
 
     const usernameTextEl = document.querySelector('#usernameText');
 
@@ -93,9 +90,15 @@
       if (!statsData) {
         return;
       }
+
+      if (!usernameTextEl.value) {
+        alert('Por favor, introduce el nombre del candidato en el campo de la izquierda');
+        return;
+      }
       
       const statsDataJson = JSON.parse(statsData);
-      saveDataAsFile(`${usernameTextEl.value}.json`, statsDataJson);
+      const statsDataCsv = convertToCSV(statsDataJson.stats, usernameTextEl.value);
+      saveDataAsFile(`${usernameTextEl.value}.csv`, 'text/csv', statsDataCsv);
     });
   </script>
 </body>
