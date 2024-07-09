@@ -37,7 +37,7 @@ export default class Stats extends Phaser.GameObjects.Image {
         this.background = this.scene.add.image(this.mywidth, this.myheight + 20, texture);
         this.background.setScale(1, 1.05);
 
-        this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, 'Estadísticas', {
+        this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, 'Statistics', {
             fontFamily: 'Russo One',
             fontSize: '40px',
             color: '#FFFFFF',
@@ -47,7 +47,7 @@ export default class Stats extends Phaser.GameObjects.Image {
         if (JSON.stringify(myMaxStat)) {
             this.showStats(myMaxStat);
         } else {
-            this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "No hay estadísticas disponibles", {
+            this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "No statistics available", {
                 fontFamily: 'Russo One',
                 fontSize: '25px',
                 color: '#FFFFFF',
@@ -61,11 +61,11 @@ export default class Stats extends Phaser.GameObjects.Image {
     showStats(myMaxStat: JSON) {
         if (myMaxStat) {
             var content = [
-                "Tipo de entrenamiento: " + myMaxStat["_workout"],
-                "Fecha del entrenamiento: " + myMaxStat["_date"],
-                "Máximo nivel alcanzado: " + myMaxStat["_maxLevel"],
-                "Marcadores alcanzados: " + myMaxStat["_touchedMarkers"],
-                "Marcadores no alcanzados: " + myMaxStat["_untouchedMarkers"],
+                "Training type: " + myMaxStat["_workout"],
+                "Training date: " + myMaxStat["_date"],
+                "Highest level reached: " + myMaxStat["_maxLevel"],
+                "Num. touched markers: " + myMaxStat["_touchedMarkers"],
+                "Num. untouched markers: " + myMaxStat["_untouchedMarkers"],
             ];
             this.progress[0] = myMaxStat["_maxLevel"] * 25;
             this.progress[1] = myMaxStat["_touchedMarkers"] * 7.5;
@@ -107,14 +107,14 @@ export default class Stats extends Phaser.GameObjects.Image {
             this.percentFailed = myMaxStat["_untouchedMarkers"] / myMaxStat["_totalTouchableMarkers"] * 400;
             this.textCorrect = this.scene.add.dynamicBitmapText(this.mywidth / 2 + 120, this.myheight / 2 + 305, 'gothic', '0%', 32);
             this.textFailed = this.scene.add.dynamicBitmapText(this.mywidth / 2 + 520, this.myheight / 2 + 305, 'gothic', '0%', 32);
-            this.textCorrectLabel = this.scene.add.text(this.mywidth / 2, this.myheight / 2 + 445, "% de marcadores acertados", {
+            this.textCorrectLabel = this.scene.add.text(this.mywidth / 2, this.myheight / 2 + 445, "% of successful markers", {
                 fontFamily: 'Russo One',
                 fontSize: '20px',
                 color: '#FFFFFF',
                 fontStyle: 'normal',
 
             });
-            this.textFailedLabel = this.scene.add.text(this.mywidth / 2 + 385, this.myheight / 2 + 445, "% de marcadores fallados", {
+            this.textFailedLabel = this.scene.add.text(this.mywidth / 2 + 385, this.myheight / 2 + 445, "% of failed markers", {
                 fontFamily: 'Russo One',
                 fontSize: '20px',
                 color: '#FFFFFF',

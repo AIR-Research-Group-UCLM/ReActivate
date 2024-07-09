@@ -309,7 +309,7 @@ export default class WorkoutFlexibilidad extends AbstractPoseTrackerScene {
 
     saveData() {
         var date: string = Utils.getActualDate();
-        var statsData = new StatsData("flexibilidad", date, this.currentLevel, this.touchedMarkers, this.untouchedMarkers, this.totalTouchableMarkers);
+        var statsData = new StatsData("flexibility", date, this.currentLevel, this.touchedMarkers, this.untouchedMarkers, this.totalTouchableMarkers);
         Utils.setLocalStorageData(statsData);
     }
 

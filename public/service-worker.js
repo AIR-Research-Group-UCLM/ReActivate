@@ -1,4 +1,4 @@
-const cacheName = 'ReActívate';
+const cacheName = 'ReActivate';
 const appShellFiles = [
   './',
   './index.html',

@@ -16,7 +16,7 @@ export default class Historical extends Phaser.GameObjects.Image {
         this.background = this.scene.add.image(this.mywidth, this.myheight + 20, texture);
         this.background.setScale(1, 1.05);
 
-        this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, 'Historial', {
+        this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, 'History', {
             fontFamily: 'Russo One',
             fontSize: '40px',
             color: '#FFFFFF',
@@ -26,7 +26,7 @@ export default class Historical extends Phaser.GameObjects.Image {
         if (this.myStats?.length) {
             this.showHistorical();
         } else {
-            this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "Aún no has realizado ningún entrenamiento", {
+            this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "You have not done any training yet", {
                 fontFamily: 'Russo One',
                 fontSize: '25px',
                 color: '#FFFFFF',
@@ -50,11 +50,11 @@ export default class Historical extends Phaser.GameObjects.Image {
         var content: string[] = [];
         for (var i = this.actualStatGruop; i < this.myStats.length && (i - this.actualStatGruop) < 3; i++) {
             content.push(
-                "Tipo de entrenamiento: " + this.myStats[i]["_workout"],
-                "Fecha del entrenamiento: " + this.myStats[i]["_date"],
-                "Máximo nivel alcanzado: " + this.myStats[i]["_maxLevel"],
-                "Marcadores alcanzados: " + this.myStats[i]["_touchedMarkers"],
-                "Marcadores no alcanzados: " + this.myStats[i]["_untouchedMarkers"],
+                "Training type: " + this.myStats[i]["_workout"],
+                "Training date: " + this.myStats[i]["_date"],
+                "Highest level reached: " + this.myStats[i]["_maxLevel"],
+                "Num. touched markers: " + this.myStats[i]["_touchedMarkers"],
+                "Num. untouched markers: " + this.myStats[i]["_untouchedMarkers"],
                 "",
             );
         }

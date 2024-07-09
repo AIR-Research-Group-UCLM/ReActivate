@@ -50,7 +50,7 @@ export default class Menu extends AbstractPoseTrackerScene {
 
     super.create();
 
-    this.titleText = this.add.text(this.width / 2 - 120, this.height / 12, 'ReActívate', {
+    this.titleText = this.add.text(this.width / 2 - 120, this.height / 12, 'ReActivate', {
       fontFamily: 'Russo One',
       fontSize: '45px',
       color: '#FFFFFF',
@@ -65,13 +65,13 @@ export default class Menu extends AbstractPoseTrackerScene {
     this.sound.pauseOnBlur = false;
 
 
-    this.flexibility = new CustomButtom(this, 250, 220, 'button', 'Flexibilidad');
+    this.flexibility = new CustomButtom(this, 250, 220, 'button', 'Flexibility');
     this.buttons.push(this.flexibility);
 
     this.cardio = new CustomButtom(this, 645, 220, 'button', 'Cardio');
     this.buttons.push(this.cardio);
 
-    this.agility = new CustomButtom(this, 1042, 220, 'button', 'Agilidad');
+    this.agility = new CustomButtom(this, 1042, 220, 'button', 'Agility');
     this.buttons.push(this.agility);
 
     this.buttonRight = new CustomButtom(this, 1220, 600, 'out', '►', 95, -48);
@@ -98,12 +98,12 @@ export default class Menu extends AbstractPoseTrackerScene {
     this.tutorial.setEnabled(false);
     this.buttons.push(this.tutorial);
 
-    this.buttonRanking = new CustomButtom(this, 645, 220, 'button', 'Historial')
+    this.buttonRanking = new CustomButtom(this, 645, 220, 'button', 'History')
     this.buttonRanking.setVisible(false);
     this.buttonRanking.setEnabled(false);
     this.buttons.push(this.buttonRanking);
 
-    this.buttonStats = new CustomButtom(this, 1042, 220, 'button', 'Estadísticas')
+    this.buttonStats = new CustomButtom(this, 1042, 220, 'button', 'Statistics')
     this.buttonStats.setVisible(false);
     this.buttonStats.setEnabled(false);
     this.buttons.push(this.buttonStats);
@@ -199,13 +199,13 @@ export default class Menu extends AbstractPoseTrackerScene {
 
   menuSwitch(button: CustomButtom) {
     switch (button.getText()) {
-      case 'Flexibilidad':
+      case 'Flexibility':
         this.startNewSceneWorkout(Constants.SCENES.WorkoutFlexibilidad, WorkoutFlexibilidad);
         break;
       case 'Cardio':
         this.startNewSceneWorkout(Constants.SCENES.WorkoutCardio, WorkoutCardio);
         break;
-      case 'Agilidad':
+      case 'Agility':
         this.startNewSceneWorkout(Constants.SCENES.WorkoutAgilidad, WorkoutAgility);
         break;
       case 'Tutorial':
@@ -219,7 +219,7 @@ export default class Menu extends AbstractPoseTrackerScene {
         this.buttonExitMarker.setVisible(true);
         this.buttonExitMarker.setEnabled(true);
         break;
-      case 'Estadísticas':
+      case 'Statistics':
         this.statsView = new Stats(this, this.width / 2, this.height / 2, "backgroundStats");
         this.buttonLeft.setVisible(false);
         this.buttonLeft.setEnabled(false);
@@ -230,7 +230,7 @@ export default class Menu extends AbstractPoseTrackerScene {
 
         this.statsOn = true;
         break;
-      case 'Historial':
+      case 'History':
         this.historicalView = new Historical(this, this.width / 2, this.height / 2, "backgroundStats");
         this.buttonLeft.setVisible(false);
         this.buttonLeft.setEnabled(false);

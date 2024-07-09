@@ -1,106 +1,106 @@
-<html lang='en'>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20QLM76YY2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-20QLM76YY2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-20QLM76YY2');
-  </script>
-  <script src="./vendor/@json2csv/json2csv.js"></script>
-  <title>ReActívate</title>
-  <meta charset='utf-8' />
-  <meta name='author' content='Raúl Ruiz del Valle' />
-  <meta name='description' content='Exergame environment using augmented reality.' />
-  <meta property='og:title' content='ReActívate' />
-  <meta property='og:description' content='Exergame environment using augmented reality.' />
-  <meta property='og:type' content='website' />
-  <link rel='shortcut icon' href='favicon.ico' />
-  <link rel='apple-touch-icon' sizes='180x180' href='apple-touch-icon.png' />
-  <link rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png' />
-  <link rel='icon' type='image/png' sizes='16x16' href='favicon-16x16.png' />
-  <style>
-    body {
-      margin: 0;
-      background-color: #264653;
-    }
-
-    canvas {
-      display: block;
-      margin: auto;
-    }
-
-    #input-video {
-      display: none;
-    }
-
-    .buttons-bar {
-      line-height: 2rem;
-      text-align: center;
-    }
-
-    #usernameText {
-      width: 50ch;
-    }
-
-    #exportButton {
-      margin-left: 8rem;
-    }
-  </style>
-</head>
-
-<body>
-  <div class='buttons-bar'>
-    <input type='button' value='❌' id='clearButton'>
-    <input type='text' name='username' id='usernameText' placeholder='Nombre de usuario'>
-    <input type='button' value='Exportar resultados' id='exportButton'>
-  </div>
-  <video id='input-video'></video>
-  <script src='bundle.js'></script>
-  <script>
-    const saveDataAsFile = (filename, type, dataObjToWrite) => {
-      const link = document.createElement("a");
-      link.download = filename;
-      link.href = window.URL.createObjectURL(new Blob([dataObjToWrite], { type }));
-      link.click();
-      link.remove()
-    };
-
-    const convertToCSV = (arr, username) => {
-      arr.forEach((element) => (element['_username'] = username));
-
-      return json2csv.parse(arr, { withBOM: true });
-    }
-
-    const usernameTextEl = document.querySelector('#usernameText');
-
-    document.querySelector('#clearButton').addEventListener('click', (event) => {
-      if (!window.confirm('¿Eliminar TODAS las estadísticas generadas hasta ahora?')) {
-        return;
+      gtag('config', 'G-20QLM76YY2');
+    </script>
+    <script src="./vendor/@json2csv/json2csv.js"></script>
+    <title>ReActivate</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Raúl Ruiz del Valle" />
+    <meta name="description" content="Exergame environment using augmented reality." />
+    <meta property="og:title" content="ReActivate" />
+    <meta property="og:description" content="Exergame environment using augmented reality." />
+    <meta property="og:type" content="website" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #264653;
       }
 
-      localStorage.removeItem('statsData');
-    });
-
-    document.querySelector('#exportButton').addEventListener('click', (event) => {
-      const statsData = localStorage.getItem('statsData');
-      if (!statsData) {
-        return;
+      canvas {
+        display: block;
+        margin: auto;
       }
 
-      if (!usernameTextEl.value) {
-        alert('Por favor, introduce el nombre del candidato en el campo de la izquierda');
-        return;
+      #input-video {
+        display: none;
       }
-      
-      const statsDataJson = JSON.parse(statsData);
-      const statsDataCsv = convertToCSV(statsDataJson.stats, usernameTextEl.value);
-      saveDataAsFile(`${usernameTextEl.value}.csv`, 'text/csv', statsDataCsv);
-    });
-  </script>
-</body>
 
+      .buttons-bar {
+        line-height: 2rem;
+        text-align: center;
+      }
+
+      #usernameText {
+        width: 50ch;
+      }
+
+      #exportButton {
+        margin-left: 8rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="buttons-bar">
+      <input type="button" value="❌" id="clearButton" />
+      <input type="text" name="username" id="usernameText" placeholder="Username" />
+      <input type="button" value="Export results" id="exportButton" />
+    </div>
+    <video id="input-video"></video>
+    <script src="bundle.js"></script>
+    <script>
+      const saveDataAsFile = (filename, type, dataObjToWrite) => {
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = window.URL.createObjectURL(new Blob([dataObjToWrite], { type }));
+        link.click();
+        link.remove();
+      };
+
+      const convertToCSV = (arr, username) => {
+        arr.forEach((element) => (element['_username'] = username));
+
+        return json2csv.parse(arr, { withBOM: true });
+      };
+
+      const usernameTextEl = document.querySelector('#usernameText');
+
+      document.querySelector('#clearButton').addEventListener('click', (event) => {
+        if (!window.confirm('Delete ALL statistics generated so far?')) {
+          return;
+        }
+
+        localStorage.removeItem('statsData');
+      });
+
+      document.querySelector('#exportButton').addEventListener('click', (event) => {
+        const statsData = localStorage.getItem('statsData');
+        if (!statsData) {
+          return;
+        }
+
+        if (!usernameTextEl.value) {
+          alert('Please enter the name of the participant in the field on the left');
+          return;
+        }
+
+        const statsDataJson = JSON.parse(statsData);
+        const statsDataCsv = convertToCSV(statsDataJson.stats, usernameTextEl.value);
+        saveDataAsFile(`${usernameTextEl.value}.csv`, 'text/csv', statsDataCsv);
+      });
+    </script>
+  </body>
 </html>
