@@ -81380,7 +81380,7 @@
       this.myheight = y;
       this.background = this.scene.add.image(this.mywidth, this.myheight + 20, texture);
       this.background.setScale(1, 1.05);
-      this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, "Estad\xEDsticas", {
+      this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, "Statistics", {
         fontFamily: "Russo One",
         fontSize: "40px",
         color: "#FFFFFF",
@@ -81390,7 +81390,7 @@
       if (JSON.stringify(myMaxStat)) {
         this.showStats(myMaxStat);
       } else {
-        this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "No hay estad\xEDsticas disponibles", {
+        this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "No statistics available", {
           fontFamily: "Russo One",
           fontSize: "25px",
           color: "#FFFFFF",
@@ -81401,11 +81401,11 @@
     showStats(myMaxStat) {
       if (myMaxStat) {
         var content = [
-          "Tipo de entrenamiento: " + myMaxStat["_workout"],
-          "Fecha del entrenamiento: " + myMaxStat["_date"],
-          "M\xE1ximo nivel alcanzado: " + myMaxStat["_maxLevel"],
-          "Marcadores alcanzados: " + myMaxStat["_touchedMarkers"],
-          "Marcadores no alcanzados: " + myMaxStat["_untouchedMarkers"]
+          "Training type: " + myMaxStat["_workout"],
+          "Training date: " + myMaxStat["_date"],
+          "Highest level reached: " + myMaxStat["_maxLevel"],
+          "Num. touched markers: " + myMaxStat["_touchedMarkers"],
+          "Num. untouched markers: " + myMaxStat["_untouchedMarkers"]
         ];
         this.progress[0] = myMaxStat["_maxLevel"] * 25;
         this.progress[1] = myMaxStat["_touchedMarkers"] * 7.5;
@@ -81441,13 +81441,13 @@
         this.percentFailed = myMaxStat["_untouchedMarkers"] / myMaxStat["_totalTouchableMarkers"] * 400;
         this.textCorrect = this.scene.add.dynamicBitmapText(this.mywidth / 2 + 120, this.myheight / 2 + 305, "gothic", "0%", 32);
         this.textFailed = this.scene.add.dynamicBitmapText(this.mywidth / 2 + 520, this.myheight / 2 + 305, "gothic", "0%", 32);
-        this.textCorrectLabel = this.scene.add.text(this.mywidth / 2, this.myheight / 2 + 445, "% de marcadores acertados", {
+        this.textCorrectLabel = this.scene.add.text(this.mywidth / 2, this.myheight / 2 + 445, "% of successful markers", {
           fontFamily: "Russo One",
           fontSize: "20px",
           color: "#FFFFFF",
           fontStyle: "normal"
         });
-        this.textFailedLabel = this.scene.add.text(this.mywidth / 2 + 385, this.myheight / 2 + 445, "% de marcadores fallados", {
+        this.textFailedLabel = this.scene.add.text(this.mywidth / 2 + 385, this.myheight / 2 + 445, "% of failed markers", {
           fontFamily: "Russo One",
           fontSize: "20px",
           color: "#FFFFFF",
@@ -82482,7 +82482,7 @@
     }
     saveData() {
       var date = utils_default.getActualDate();
-      var statsData = new statsData_default("agilidad", date, this.currentLevel, this.touchedMarkers, this.untouchedMarkers, this.totalTouchableMarkers);
+      var statsData = new statsData_default("agility", date, this.currentLevel, this.touchedMarkers, this.untouchedMarkers, this.totalTouchableMarkers);
       utils_default.setLocalStorageData(statsData);
     }
     update(time, delta) {
@@ -82555,7 +82555,7 @@
       this.myheight = y;
       this.background = this.scene.add.image(this.mywidth, this.myheight + 20, texture);
       this.background.setScale(1, 1.05);
-      this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, "Historial", {
+      this.TitleTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 4, "History", {
         fontFamily: "Russo One",
         fontSize: "40px",
         color: "#FFFFFF",
@@ -82565,7 +82565,7 @@
       if ((_a = this.myStats) == null ? void 0 : _a.length) {
         this.showHistorical();
       } else {
-        this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "A\xFAn no has realizado ning\xFAn entrenamiento", {
+        this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2, "You have not done any training yet", {
           fontFamily: "Russo One",
           fontSize: "25px",
           color: "#FFFFFF",
@@ -82584,7 +82584,7 @@
       }
       var content = [];
       for (var i = this.actualStatGruop; i < this.myStats.length && i - this.actualStatGruop < 3; i++) {
-        content.push("Tipo de entrenamiento: " + this.myStats[i]["_workout"], "Fecha del entrenamiento: " + this.myStats[i]["_date"], "M\xE1ximo nivel alcanzado: " + this.myStats[i]["_maxLevel"], "Marcadores alcanzados: " + this.myStats[i]["_touchedMarkers"], "Marcadores no alcanzados: " + this.myStats[i]["_untouchedMarkers"], "");
+        content.push("Training type: " + this.myStats[i]["_workout"], "Training date: " + this.myStats[i]["_date"], "Highest level reached: " + this.myStats[i]["_maxLevel"], "Num. touched markers: " + this.myStats[i]["_touchedMarkers"], "Num. untouched markers: " + this.myStats[i]["_untouchedMarkers"], "");
       }
       this.bodyTxt = this.scene.add.text(this.mywidth / 4, this.myheight / 2 - 20, content, {
         fontFamily: "Russo One",
@@ -82846,7 +82846,7 @@
     }
     saveData() {
       var date = utils_default.getActualDate();
-      var statsData = new statsData_default("flexibilidad", date, this.currentLevel, this.touchedMarkers, this.untouchedMarkers, this.totalTouchableMarkers);
+      var statsData = new statsData_default("flexibility", date, this.currentLevel, this.touchedMarkers, this.untouchedMarkers, this.totalTouchableMarkers);
       utils_default.setLocalStorageData(statsData);
     }
     update(time, delta) {
@@ -82954,7 +82954,7 @@
     }
     create() {
       super.create();
-      this.titleText = this.add.text(this.width / 2 - 120, this.height / 12, "ReAct\xEDvate", {
+      this.titleText = this.add.text(this.width / 2 - 120, this.height / 12, "ReActivate", {
         fontFamily: "Russo One",
         fontSize: "45px",
         color: "#FFFFFF",
@@ -82965,11 +82965,11 @@
       this.background = this.add.image(1280, 720 / 2, "room");
       this.audioTutorial = this.sound.add(constants_default.AUDIO.AUDIOTUTORIAL, {volume: 0.65, loop: false});
       this.sound.pauseOnBlur = false;
-      this.flexibility = new custom_button_default(this, 250, 220, "button", "Flexibilidad");
+      this.flexibility = new custom_button_default(this, 250, 220, "button", "Flexibility");
       this.buttons.push(this.flexibility);
       this.cardio = new custom_button_default(this, 645, 220, "button", "Cardio");
       this.buttons.push(this.cardio);
-      this.agility = new custom_button_default(this, 1042, 220, "button", "Agilidad");
+      this.agility = new custom_button_default(this, 1042, 220, "button", "Agility");
       this.buttons.push(this.agility);
       this.buttonRight = new custom_button_default(this, 1220, 600, "out", "\u25BA", 95, -48);
       this.buttons.push(this.buttonRight);
@@ -82988,11 +82988,11 @@
       this.tutorial.setVisible(false);
       this.tutorial.setEnabled(false);
       this.buttons.push(this.tutorial);
-      this.buttonRanking = new custom_button_default(this, 645, 220, "button", "Historial");
+      this.buttonRanking = new custom_button_default(this, 645, 220, "button", "History");
       this.buttonRanking.setVisible(false);
       this.buttonRanking.setEnabled(false);
       this.buttons.push(this.buttonRanking);
-      this.buttonStats = new custom_button_default(this, 1042, 220, "button", "Estad\xEDsticas");
+      this.buttonStats = new custom_button_default(this, 1042, 220, "button", "Statistics");
       this.buttonStats.setVisible(false);
       this.buttonStats.setEnabled(false);
       this.buttons.push(this.buttonStats);
@@ -83067,13 +83067,13 @@
     }
     menuSwitch(button) {
       switch (button.getText()) {
-        case "Flexibilidad":
+        case "Flexibility":
           this.startNewSceneWorkout(constants_default.SCENES.WorkoutFlexibilidad, workout_flexibility_default);
           break;
         case "Cardio":
           this.startNewSceneWorkout(constants_default.SCENES.WorkoutCardio, workout_cardio_default);
           break;
-        case "Agilidad":
+        case "Agility":
           this.startNewSceneWorkout(constants_default.SCENES.WorkoutAgilidad, workout_agilidad_default);
           break;
         case "Tutorial":
@@ -83087,7 +83087,7 @@
           this.buttonExitMarker.setVisible(true);
           this.buttonExitMarker.setEnabled(true);
           break;
-        case "Estad\xEDsticas":
+        case "Statistics":
           this.statsView = new stats_default(this, this.width / 2, this.height / 2, "backgroundStats");
           this.buttonLeft.setVisible(false);
           this.buttonLeft.setEnabled(false);
@@ -83097,7 +83097,7 @@
           this.buttonExitMarker.setEnabled(true);
           this.statsOn = true;
           break;
-        case "Historial":
+        case "History":
           this.historicalView = new historical_default(this, this.width / 2, this.height / 2, "backgroundStats");
           this.buttonLeft.setVisible(false);
           this.buttonLeft.setEnabled(false);
@@ -83281,7 +83281,7 @@
       this.buildBar();
       const fonts = new WebFontFile_default(this.load, "Russo One");
       this.load.addFile(fonts);
-      this.textLoading = this.add.text(this.width / 2 - 120, this.height / 2 - 120, "Cargando ...", {
+      this.textLoading = this.add.text(this.width / 2 - 120, this.height / 2 - 120, "Loading ...", {
         fontFamily: "Russo One",
         fontSize: "45px",
         color: "#FFFFFF",
