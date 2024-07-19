@@ -1,17 +1,21 @@
-### Installation
+# ReActivate
+
+Augmented reality-based architecture for the development and deployment of exergames that promote and guide physical activity in elderly people
+
+## Installation
 
 ```bash
-npm install && npm run install-pose-runtimes
+$ npm install && npm run install-pose-runtimes
 ```
 
-That npm script will also install the @mediapipe/pose library into the _public/vendor/@mediapipe/_ directory and will make a link named _pose_ to the installed version. The version installed can be changed in the npm script contained in the _package.json_ file; the selected version should match the one used in the _dependencies_ section of the file for the _@mediapipe/pose_ entry. 
+That npm script will also install the @mediapipe/pose library into the _public/vendor/@mediapipe/_ directory and will make a link named _pose_ to the installed version. The version installed can be changed in the npm script contained in the _package.json_ file; the selected version should match the one used in the _dependencies_ section of the file for the _@mediapipe/pose_ entry.
 
 Also, check the _scripts/install-pose-runtimes.sh_ script for advanced options.
 
-### Start development server:
+After install is finished, run a development server with:
 
 ```bash
-npm start
+$ npm start
 ```
 
 ## Project Structure
@@ -23,8 +27,8 @@ npm start
     │   ├── vendor/  # All the external scripts that shouldn't be compiled; mostly to hold the @mediapipe/pose WASM runtimes
     │   ├── index.html  # The base HTML file
     ├── src/  # All the TypeScript files that comprise your application
-    │   ├── pose-tracker-engine/  # Directory holding all the @mediapipe/pose wrappers and utilities made for the application    
-    │   ├── scenes/  # All the scenes of the application
+    │   ├── pose-tracker-engine/  # Directory holding all the @mediapipe/pose wrappers and utilities made for the application
+    │   ├── scenes/  # All the scenes of the application. New exergames are added here
     │   ├── types/  # Global interfaces, enums, types, etc
     │   ├── main.ts  # The main TS file that will be executed when the application runs
     ├── package.json  # The file with the build script and the dependencies
